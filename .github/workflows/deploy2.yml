@@ -20,10 +20,6 @@ jobs:
         REMOTE_HOST: ${{ secrets.HOST_DNS_2 }}
         REMOTE_USER: ${{ secrets.EC2_USER }}
         TARGET: ${{ secrets.TARGET_DIR }}
-      with:
-        REMOTE_HOST: ''
-        REMOTE_USER: ''
-        SSH_PRIVATE_KEY: ''
 
     - name: Executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
@@ -34,10 +30,9 @@ jobs:
         script: |
           pm2 delete my-app || echo "No existing process found"
           cd DistribuidaN-2
-          sudo git pull origin main
-          cd OneProject
-          sudo npm install
-          sudo npm run build
-          sudo pm2 start npm --name "my-app" -- run dev
-          sudo pm2 save
+          git pull origin main
+          npm install --production
+          npm run build
+          pm2 start npm --name "my-app" -- run dev
+          pm2 save
           echo "Application is running in the background."
