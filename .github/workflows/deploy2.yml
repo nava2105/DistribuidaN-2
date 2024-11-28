@@ -33,6 +33,6 @@ jobs:
           git pull origin main
           npm install --production
           npm run build
-          pm2 start npm --name "my-app" -- run dev
+          pm2 start npm --name "my-app" -- run start
           pm2 save
           echo "Application is running in the background."
