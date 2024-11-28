@@ -29,7 +29,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           pm2 delete my-app || echo "No existing process found"
-          cd DistribuidaN-2-MAIN
+          cd DISTRIBUIDAN-2-MAIN
           sudo git pull origin main
           sudo npm install
           sudo npm run build
